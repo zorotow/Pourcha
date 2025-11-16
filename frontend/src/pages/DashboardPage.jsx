@@ -29,6 +29,8 @@ import {
 } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 import axios from '../services/api'
+import ToDoList from '../components/ToDoList'
+import AnnouncementsPanel from '../components/AnnouncementsPanel'
 
 function DashboardPage() {
   const navigate = useNavigate()
@@ -112,6 +114,16 @@ function DashboardPage() {
                 </Typography>
               </CardContent>
             </Card>
+          </Grid>
+        </Grid>
+
+        {/* To-Do List and Announcements */}
+        <Grid container spacing={2} sx={{ mb: 3 }}>
+          <Grid item xs={12} md={6}>
+            <ToDoList compact />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AnnouncementsPanel compact />
           </Grid>
         </Grid>
 

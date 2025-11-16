@@ -22,6 +22,9 @@ A comprehensive multi-tenant SAAS procurement platform with integrated payment p
   - Review cart with line items, suppliers, prices
   - Chart of Accounts selection for billing
   - Delivery address and special instructions
+  - **Approvers Tab**: Build multi-level approval chains
+  - **Comments Tab**: Collaborate with approvers and track discussions
+  - **History Tab**: Complete audit trail of all cart changes
   - Commodity approval workflow
   - Hedged rate support for international payments
 - **Requisition Management**:
@@ -35,6 +38,20 @@ A comprehensive multi-tenant SAAS procurement platform with integrated payment p
   - Attach documents and receipts
   - Approval workflows with delegation
   - Payment tracking and reconciliation
+- **Goods Receipt**:
+  - Create receipts from approved requisitions
+  - Track ordered vs received vs accepted quantities
+  - Quality inspection and condition tracking
+  - Discrepancy detection and reporting
+  - Delivery note integration
+  - Location-based receiving
+- **3-Way Matching**:
+  - Automated matching: PO ↔ Invoice ↔ Goods Receipt
+  - Configurable tolerance thresholds (quantity 5%, amount 2%)
+  - Supplier verification across all documents
+  - Amount and quantity variance analysis
+  - Match status: matched, partial_match, failed
+  - Recommended action generation for payment approval
 - **Supplier Management**:
   - Multiple supplier types (standard, store, pickup-only)
   - Supplier catalogs with part numbers
@@ -54,6 +71,18 @@ A comprehensive multi-tenant SAAS procurement platform with integrated payment p
   - Status updates for requisitions/invoices
   - Delegate assignments
   - Payment confirmations
+- **User Settings**:
+  - Profile management (name, email, phone)
+  - Default cost center preference
+  - Default delivery address and location
+  - Notification preferences (email toggles for all event types)
+  - Customizable defaults to speed up requisition creation
+- **Dashboard Enhancements**:
+  - **To-Do List**: Pending approvals, goods receipts, and tasks
+  - **Announcements Panel**: Procurement news and updates
+  - Priority-based task organization
+  - Quick navigation to pending items
+  - Expandable/collapsible panels
 
 ### Payment Features
 - **Subscription Plans**:
@@ -67,10 +96,41 @@ A comprehensive multi-tenant SAAS procurement platform with integrated payment p
   - **Crypto**: USDT, USDC (Solana), Bitcoin, Monero
 
 ### Integration Features
-- **External Systems**: Xero, SAP, QuickBooks, Stripe, Plaid
-- **Bidirectional Sync**: Push purchase orders, pull payment statuses
-- **OAuth 2.0**: Secure authentication for all integrations
-- **ISO 27001 Compliant**: Enterprise-grade security
+- **Xero Integration**:
+  - OAuth 2.0 authenticated connection
+  - Sync suppliers (contacts) from Xero → Pourcha
+  - Sync Chart of Accounts from Xero → Pourcha
+  - Push invoices (bills) to Xero
+  - Push requisitions (purchase orders) to Xero
+  - Payment status retrieval
+- **QuickBooks Online Integration**:
+  - OAuth 2.0 authenticated connection
+  - Sync vendors from QuickBooks → Pourcha
+  - Sync Chart of Accounts from QuickBooks → Pourcha
+  - Push bills to QuickBooks
+  - Push purchase orders to QuickBooks
+- **SAP ERP Integration**:
+  - OData API framework
+  - Sync business partners (suppliers) from SAP → Pourcha
+  - Sync GL accounts from SAP → Pourcha
+  - Push purchase orders to SAP
+  - Push supplier invoices to SAP
+- **Plaid Bank Linking**:
+  - Link bank accounts for payment initiation
+  - Get account balances and information
+  - Retrieve transactions with date ranges
+  - ACH payment initiation support
+- **ISO 20022 Payment Messaging**:
+  - Generate pain.001.001.03 (Customer Credit Transfer Initiation)
+  - Generate pain.002.001.03 (Payment Status Report)
+  - Generate camt.053.001.02 (Bank to Customer Statement)
+  - IBAN validation for international payments
+- **Integration Management**:
+  - Unified dashboard for all integrations
+  - Connection status tracking
+  - Manual sync triggers
+  - Test connection functionality
+  - Last sync timestamps
 
 ## Tech Stack
 
