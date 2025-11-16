@@ -108,6 +108,14 @@ class Invoice
     #[Groups(['invoice:read'])]
     private ?\DateTimeImmutable $paidAt = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['invoice:read'])]
+    private ?string $externalId = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    #[Groups(['invoice:read'])]
+    private ?string $externalSource = null; // xero, quickbooks, sap
+
     #[ORM\Column]
     #[Groups(['invoice:read'])]
     private ?\DateTimeImmutable $createdAt = null;
@@ -170,6 +178,10 @@ class Invoice
     public function setApprovedAt(?\DateTimeImmutable $approvedAt): static { $this->approvedAt = $approvedAt; return $this; }
     public function getPaidAt(): ?\DateTimeImmutable { return $this->paidAt; }
     public function setPaidAt(?\DateTimeImmutable $paidAt): static { $this->paidAt = $paidAt; return $this; }
+    public function getExternalId(): ?string { return $this->externalId; }
+    public function setExternalId(?string $externalId): static { $this->externalId = $externalId; return $this; }
+    public function getExternalSource(): ?string { return $this->externalSource; }
+    public function setExternalSource(?string $externalSource): static { $this->externalSource = $externalSource; return $this; }
     public function getCreatedAt(): ?\DateTimeImmutable { return $this->createdAt; }
     public function setCreatedAt(\DateTimeImmutable $createdAt): static { $this->createdAt = $createdAt; return $this; }
     public function getUpdatedAt(): ?\DateTimeImmutable { return $this->updatedAt; }

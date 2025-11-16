@@ -6,6 +6,7 @@ use App\Entity\Notification;
 use App\Entity\User;
 use App\Entity\Requisition;
 use App\Entity\Invoice;
+use App\Entity\GoodsReceipt;
 use Doctrine\ORM\EntityManagerInterface;
 
 class NotificationService
@@ -153,6 +154,28 @@ class NotificationService
         $notification->setData([
             'user_id' => $user->getId(),
             'user_name' => $user->getFirstName() . ' ' . $user->getLastName(),
+        ]);
+
+        $this->entityManager->persist($notification);
+        $this->entityManager->flush();
+    }
+
+    public function notifyGoodsReceived(User $user, GoodsReceipt $goodsReceipt): void
+    {
+        $notification = new Notification();
+        $notification->setUser($user);
+        $notification->setType(Notification::TYPE_GENERAL);
+        $notification->setTitle('Goods Received');
+        $notification->setMessage(sprintf(
+            'Goods receipt %s for requisition %s has been confirmed.',
+            $goodsReceipt->getReceiptNumber(),
+            $goodsReceipt->getRequisition()->getRequisitionNumber()
+        ));
+        $notification->setData([
+            'type' => 'goods_receipt',
+            'id' => $goodsReceipt->getId(),
+            'receipt_number' => $goodsReceipt->getReceiptNumber(),
+            'requisition_number' => $goodsReceipt->getRequisition()->getRequisitionNumber(),
         ]);
 
         $this->entityManager->persist($notification);

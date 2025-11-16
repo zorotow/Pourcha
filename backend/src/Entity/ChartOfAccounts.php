@@ -67,6 +67,18 @@ class ChartOfAccounts
     #[Groups(['coa:read', 'coa:write'])]
     private bool $isActive = true;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    #[Groups(['coa:read'])]
+    private ?string $accountType = null; // EXPENSE, REVENUE, ASSET, LIABILITY
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['coa:read'])]
+    private ?string $externalId = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    #[Groups(['coa:read'])]
+    private ?string $externalSource = null; // xero, quickbooks, sap
+
     #[ORM\Column]
     #[Groups(['coa:read'])]
     private ?\DateTimeImmutable $createdAt = null;
@@ -117,6 +129,12 @@ class ChartOfAccounts
     public function setTenant(?Tenant $tenant): static { $this->tenant = $tenant; return $this; }
     public function isActive(): bool { return $this->isActive; }
     public function setIsActive(bool $isActive): static { $this->isActive = $isActive; return $this; }
+    public function getAccountType(): ?string { return $this->accountType; }
+    public function setAccountType(?string $accountType): static { $this->accountType = $accountType; return $this; }
+    public function getExternalId(): ?string { return $this->externalId; }
+    public function setExternalId(?string $externalId): static { $this->externalId = $externalId; return $this; }
+    public function getExternalSource(): ?string { return $this->externalSource; }
+    public function setExternalSource(?string $externalSource): static { $this->externalSource = $externalSource; return $this; }
     public function getCreatedAt(): ?\DateTimeImmutable { return $this->createdAt; }
     public function setCreatedAt(\DateTimeImmutable $createdAt): static { $this->createdAt = $createdAt; return $this; }
     public function getUpdatedAt(): ?\DateTimeImmutable { return $this->updatedAt; }
