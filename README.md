@@ -10,6 +10,51 @@ A comprehensive multi-tenant SAAS procurement platform with integrated payment p
 - **RESTful API**: Symfony + API Platform backend
 - **JWT Authentication**: Secure token-based authentication
 
+### Procurement Features
+- **Dashboard**: Guided requests, popular tasks, supplier stores, notifications, to-do lists
+- **Catalog Management**:
+  - Browse 180+ items from multiple suppliers
+  - Advanced filters (category, brand, price range, supplier, commodity)
+  - Search functionality with real-time results
+  - Grid/list view toggle, sorting by relevance/price
+- **Shopping Cart**:
+  - Add items with quantity selection
+  - Review cart with line items, suppliers, prices
+  - Chart of Accounts selection for billing
+  - Delivery address and special instructions
+  - Commodity approval workflow
+  - Hedged rate support for international payments
+- **Requisition Management**:
+  - Create requisitions from cart
+  - Multi-level approval workflows
+  - Track status (draft, submitted, pending, approved, rejected)
+  - View history and audit trail
+  - On-behalf-of functionality
+- **Invoice Processing**:
+  - Submit invoices with supplier and amount
+  - Attach documents and receipts
+  - Approval workflows with delegation
+  - Payment tracking and reconciliation
+- **Supplier Management**:
+  - Multiple supplier types (standard, store, pickup-only)
+  - Supplier catalogs with part numbers
+  - Store locations and contact information
+  - Popular stores showcase (abcam, BioLegend, BOC, etc.)
+- **Approval Workflows**:
+  - Delegate authority to other users
+  - Pending approvals dashboard
+  - Approve/reject with comments
+  - Notification system for approvers
+- **Chart of Accounts**:
+  - Cost center, fund, GL account structure
+  - Search and filter accounts
+  - Assign to line items in cart/requisitions
+- **Notifications**:
+  - Real-time approval requests
+  - Status updates for requisitions/invoices
+  - Delegate assignments
+  - Payment confirmations
+
 ### Payment Features
 - **Subscription Plans**:
   - **Free**: Basic features, limited requisitions
