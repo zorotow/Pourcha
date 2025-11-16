@@ -1,0 +1,49 @@
+parameters:
+    stripe.secret_key: '%env(STRIPE_SECRET_KEY)%'
+    stripe.publishable_key: '%env(STRIPE_PUBLISHABLE_KEY)%'
+    stripe.webhook_secret: '%env(STRIPE_WEBHOOK_SECRET)%'
+    paypal.mode: '%env(PAYPAL_MODE)%'
+    paypal.client_id: '%env(PAYPAL_CLIENT_ID)%'
+    paypal.client_secret: '%env(PAYPAL_CLIENT_SECRET)%'
+    plan.pro.monthly_price: '%env(int:PLAN_PRO_MONTHLY_PRICE)%'
+    plan.pro.yearly_price: '%env(int:PLAN_PRO_YEARLY_PRICE)%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+
+    App\Service\Payment\StripeService:
+        arguments:
+            $secretKey: '%stripe.secret_key%'
+            $webhookSecret: '%stripe.webhook_secret%'
+
+    App\Service\Payment\PayPalService:
+        arguments:
+            $mode: '%paypal.mode%'
+            $clientId: '%paypal.client_id%'
+            $clientSecret: '%paypal.client_secret%'
+
+    App\Service\Payment\CryptoPaymentService:
+        arguments:
+            $wallets:
+                btc: '%env(CRYPTO_WALLET_BTC)%'
+                usdt_solana: '%env(CRYPTO_WALLET_USDT_SOLANA)%'
+                usdc_solana: '%env(CRYPTO_WALLET_USDC_SOLANA)%'
+                monero: '%env(CRYPTO_WALLET_MONERO)%'
+
+    App\Service\SubscriptionService:
+        arguments:
+            $proMonthlyPrice: '%plan.pro.monthly_price%'
+            $proYearlyPrice: '%plan.pro.yearly_price%'

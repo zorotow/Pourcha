@@ -1,0 +1,43 @@
+api_platform:
+    title: 'Pourcha API'
+    version: '1.0.0'
+    description: 'Pourcha Procurement Platform API'
+
+    formats:
+        jsonld: ['application/ld+json']
+        json: ['application/json']
+        html: ['text/html']
+
+    docs_formats:
+        jsonld: ['application/ld+json']
+        jsonapi: ['application/vnd.api+json']
+        json: ['application/json']
+        html: ['text/html']
+
+    defaults:
+        pagination_enabled: true
+        pagination_items_per_page: 30
+        pagination_maximum_items_per_page: 100
+        pagination_partial: false
+        pagination_client_enabled: true
+        pagination_client_items_per_page: true
+        pagination_client_partial: true
+
+    collection:
+        pagination:
+            enabled: true
+            items_per_page_parameter_name: 'itemsPerPage'
+            page_parameter_name: 'page'
+
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+
+    patch_formats:
+        json: ['application/merge-patch+json']
+
+    swagger:
+        versions: [3]
+        api_keys:
+            JWT:
+                name: Authorization
+                type: header
